@@ -1,0 +1,20 @@
+name: Publish wiki
+on:
+  push:
+    branches: [main]
+    paths: [wiki/**, .github/workflows/publish-wiki.yml]
+concurrency:
+  group: wiki
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: spenserblack/actions-wiki@v0.3.0
+        with:
+          # Whatever directory you choose will be mirrored to the GitHub
+          # .wiki.git. The default is .github/wiki.
+          path: wiki
