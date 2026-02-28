@@ -573,6 +573,9 @@ static var _debug_shared_layer : CanvasLayer = null
 static var _debug_shared_scroll : ScrollContainer = null
 static var _debug_shared_vbox : VBoxContainer = null
 
+## Explicitly using EditorInterface throws errors in exported builds. Use it implicitly.
+static var _editor_interface
+
 var _effects_enabled_value : bool = true
 @export var effects_enabled : bool = true :
 	set(value):
@@ -800,6 +803,10 @@ func _ready() -> void:
 	_last_reverb_damping = _target_reverb_damping
 	_last_air_absorption_cutoff = _target_air_absorption_cutoff
 
+	# Set EditorInterface safely
+	if Engine.is_editor_hint() and Engine.has_singleton("EditorInterface"):
+		_editor_interface = Engine.get_singleton("EditorInterface")
+
 
 func _rebuild_raycasts() -> void:
 	# Remove existing raycast children.
@@ -1011,7 +1018,7 @@ func _physics_process(delta: float) -> void:
 func _is_editor_selected() -> bool:
 	if not Engine.is_editor_hint():
 		return false
-	var selection := EditorInterface.get_selection()
+	var selection = _editor_interface.get_selection()
 	return self in selection.get_selected_nodes()
 
 
@@ -1021,7 +1028,7 @@ func _get_listener() -> Node3D:
 	if Engine.is_editor_hint():
 		# Use the editor's 3D viewport camera so the target ray and debug
 		# visualisation point at the developer's viewpoint.
-		var vp := EditorInterface.get_editor_viewport_3d()
+		var vp = _editor_interface.get_editor_viewport_3d()
 		if vp != null:
 			return vp.get_camera_3d()
 		return null
