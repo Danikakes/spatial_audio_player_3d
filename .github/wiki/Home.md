@@ -33,7 +33,7 @@
 - **[[Material Presets]]** — The 12 built-in acoustic material presets
 - **[[Signals Reference]]** — Every signal, with arguments and use cases
 - **[[Debug Tools]]** — In-editor visualisation and runtime overlay
-- **[[Tips & Recipes]]** — Common patterns and performance advice
+- **[[Tips and Recipes]]** — Common patterns and performance advice
 
 ---
 
