@@ -3,6 +3,7 @@
 An advanced, drop-in replacement for Godot's `AudioStreamPlayer3D` that adds physically-inspired, real-time spatial audio to your 3D games.
 
 **Version 3.0.1** · Godot 4.x · by danikakes
+
  Feel free to donate to my [Paypal]( https://www.paypal.com/donate/?business=WK8M59YJRAYAJ&no_recurring=0&currency_code=USD) if you like what I make :)
 ---
 
